@@ -1,0 +1,10 @@
+NAMESPACE=minecraft
+POD_ID=$(kubectl get pods -n minecraft | grep oude | awk '{print $1}')
+kubectl attach --namespace ${NAMESPACE} ${POD_ID} -it
+save hold
+save query
+^P + ^Q (CtrlP and CtrlQ)
+kubectl cp ${NAMESPACE}/${POD_ID}:/data .
+kubectl attach --namespace ${NAMESPACE} ${POD_ID} -it
+save resume
+^P + ^Q (CtrlP and CtrlQ)
