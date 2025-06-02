@@ -3,9 +3,10 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ template "minecraft.fullname" . }}-datadir
+  namespace: {{ .Release.Namespace }}
   labels:
     app: {{ template "minecraft.fullname" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    chart: "{{ include "chart.fullname" . }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
   {{- with .Values.persistence.labels  }}

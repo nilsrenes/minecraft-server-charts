@@ -8,12 +8,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $serviceName }}
+  namespace: "{{ $.Release.Namespace }}"
   {{- if .ingress.annotations }}
   annotations: {{- toYaml .ingress.annotations | nindent 4 }}
   {{- end }}
   labels:
     app: {{ $serviceName }}
-    chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+    chart: {{ template "minecraft.fullname" . }}
     release: "{{ $.Release.Name }}"
     heritage: "{{ $.Release.Service }}"
 spec:

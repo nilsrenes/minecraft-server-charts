@@ -6,6 +6,8 @@ image:
 
 imagePullSecret: ""
 
+replicaCount: 1
+
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
@@ -185,6 +187,19 @@ minecraftProxy:
   #  stats: f2876aa6-74d2-468c-90ee-1377111f1c9f
   #  forge_support: false
   #  inject_commands: false
+
+  # If running Velocity, you can provide a velocity.toml file like so:
+  # configFilePath: /server/velocity.toml
+  # config: |-
+  #   config-version = "2.7"
+  #   bind = "0.0.0.0:25577"
+  #   motd = "Hello from Helmified Velocity!"
+  #   show-max-players = 500
+  #   player-info-forwarding-mode = "modern"
+
+  # Needed when you wish to pass a forwarding secret to Velocity
+  # velocityForwardingSecret: "CHANGEME!"
+  # velocityForwardingSecretFilePath: /server/forwarding.secret
 
   rcon:
     # If you enable this, make SURE to change your password below.
